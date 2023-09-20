@@ -1,7 +1,6 @@
-import { Dimensions, Image, StyleSheet, View } from "react-native"
+import { Image, View } from "react-native"
 import { Input } from "../../components/Input"
 import { LevelWrapper } from "../../components/LevelWrapper";
-import { Butterfly, Chickens, MushRoom } from "../../assets/svg";
 import { NumberButton } from "../../components/NumberBuuton";
 import { useEffect, useState } from "react";
 import Sound from 'react-native-sound';
@@ -97,7 +96,7 @@ export const Level3_1 = ({ navigation }) => {
                     musicSuccess.play();
                 }, 100);
                 setTimeout(() => {
-                    // navigation.navigate('Level1_2')
+                    navigation.navigate('Level3_2')
                     musicSuccess.stop()
                 }, 2000);
             }
@@ -132,7 +131,7 @@ export const Level3_1 = ({ navigation }) => {
                 }
             </View>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 100 }}>
             {buuton.map((elm, i) => {
                 if (elm != value1 && elm != value2)
                     return <NumberButton disabled={disable} key={i} onPress={() => Answer(elm)} number={elm} />

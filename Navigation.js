@@ -38,12 +38,26 @@ import { Selection4 } from './src/pages/Selection/Selection4';
 import { Level5_1 } from './src/pages/level5/Leve5_1';
 import { Level5_5 } from './src/pages/level5/Leve5_5';
 import { Level5_6 } from './src/pages/level5/Level5_6';
+import { Level5_7 } from './src/pages/level5/Level5_7';
+import { Level5_8 } from './src/pages/level5/level5_8';
+import { Level5_2 } from './src/pages/level5/level5_2';
+import { Level6_3 } from './src/pages/level6/level6_3';
+import { Level6_6 } from './src/pages/level6/level6_6';
+import { Level6_7 } from './src/pages/level6/level6_7';
+import { Level6_5 } from './src/pages/level6/level6_5';
+import { Level6_2 } from './src/pages/level6/level6_2';
+import { Level7_1 } from './src/pages/level7/level7_1';
+import { Level7_6 } from './src/pages/level7/level7_6';
+import { Level7_8 } from './src/pages/level7/level7_8';
+import { Level7_4 } from './src/pages/level7/level7_4';
+import { Level7_5 } from './src/pages/level7/level7_5';
+import { Level7_5_1 } from './src/pages/level7/level7_5_1';
 
 export default Navigation = () => {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer >
-      <Stack.Navigator initialRouteName={'LevelScreen'} >
+      <Stack.Navigator initialRouteName={'Level7_5_1'} >
         <Stack.Screen
           name="LevelScreen"
           component={LevelScreen}
@@ -310,13 +324,112 @@ export default Navigation = () => {
             headerShown: false
           }}
         />
+        <Stack.Screen
+          name="Level5_7"
+          component={Level5_7}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level5_8"
+          component={Level5_8}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level5_2"
+          component={Level5_2}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level6_3"
+          component={Level6_3}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level6_6"
+          component={Level6_6}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level6_7"
+          component={Level6_7}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level6_2"
+          component={Level6_2}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level6_5"
+          component={Level6_5}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level7_1"
+          component={Level7_1}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level7_6"
+          component={Level7_6}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level7_8"
+          component={Level7_8}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level7_4"
+          component={Level7_4}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level7_5"
+          component={Level7_5}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level7_5_1"
+          component={Level7_5_1}
+          options={{
+            headerShown: false
+          }}
+        />
       </Stack.Navigator>
 
     </NavigationContainer>
   );
 };
-// Level4_2Level4_2
-// Level4_3
-// Selection4
-// Level5_1
-// Level5_6
+
+// Level7_6
+// Level7_8
+// Level7_4
+// Level7_5
+// Level7_5_1

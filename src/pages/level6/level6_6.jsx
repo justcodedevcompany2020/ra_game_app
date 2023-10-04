@@ -67,12 +67,12 @@ export const Level6_6 = ({ navigation }) => {
         let item2 = { ...activeNumber }
         let item3 = [...activeGame]
         for (let i = 0; i < item.length; i++) {
-            if (number <= 3) {
+            if (number <= 6) {
                 item[i].value1 = number
                 item2.number1 = number
                 break
             }
-            else if (number > 3) {
+            else if (number > 6) {
                 item[i].value2 = number
                 item2.number2 = number
                 break
@@ -126,7 +126,7 @@ export const Level6_6 = ({ navigation }) => {
             }, 100);
             setTimeout(() => {
                 musicSuccess.stop()
-                // navigation.navigate('Level3_7')
+                navigation.navigate('Level6_7')
             }, 2000);
         }
     }, [answer])

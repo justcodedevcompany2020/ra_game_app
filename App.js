@@ -3,10 +3,12 @@ import Navigation from "./Navigation"
 import { useEffect, useState } from "react";
 import { AppState } from 'react-native';
 
-
+import { BackHandler } from 'react-native';
 export default App = () => {
+
+
+
   const [appState, setAppState] = useState(AppState.currentState);
-  const [isLocked, setIsLocked] = useState(false);
   const sound1 = new Sound('a.mp3', Sound.MAIN_BUNDLE, (error) => {
     if (error) {
       console.error('Failed to load sound1', error);
@@ -131,5 +133,4 @@ export default App = () => {
 
 
   return <Navigation />
-
 }

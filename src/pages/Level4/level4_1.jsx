@@ -97,7 +97,6 @@ export const Level4_1 = ({ navigation }) => {
     const [activeGame, setActiveGame] = useState({})
 
     useEffect(() => {
-        // const randomNum = Math.floor(Math.random() * 3)
         let item = arr[game1]
         temp = GetRandomItemsFromArray(position, position.length)
         setPosition(temp)
@@ -108,6 +107,12 @@ export const Level4_1 = ({ navigation }) => {
         let item = { ...activeGame }
         let count = 0
         if (id === 1) {
+            setTimeout(() => {
+                musicSuccess.play();
+            }, 100);
+            setTimeout(() => {
+                musicSuccess.stop()
+            }, 2000);
             item.item[i].active = true
             item.item.map((elm, i) => {
                 if (elm.active) {

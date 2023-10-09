@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LevelScreen } from './src/pages/Level';
 import { Selection } from './src/pages/Selection';
@@ -66,12 +66,47 @@ import { Level6_4 } from './src/pages/level6/level6_4';
 import { Level6_4_1 } from './src/pages/level6/level6_4_1';
 import { Level6_8 } from './src/pages/level6/level6_8';
 import { Level5_3 } from './src/pages/level5/Level5_3';
+import { Level8_5 } from './src/pages/Level8/Level8_5';
+import { Level8_5_1 } from './src/pages/Level8/Level8_5_1';
+import { Level8_7 } from './src/pages/Level8/Level8_7';
+import { Level8_8 } from './src/pages/Level8/Level8_8';
+import { Level8_2 } from './src/pages/Level8/Level8_2';
+import { Level8_1 } from './src/pages/Level8/Level8_1';
+import { useEffect, useRef } from 'react';
+import { BackHandler } from 'react-native';
 
 export default Navigation = () => {
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        if (navigationRef.current &&
+          navigationRef.current.getCurrentRoute().name !== 'Selection' &&
+          navigationRef.current.getCurrentRoute().name !== 'Selection2' &&
+          navigationRef.current.getCurrentRoute().name !== 'Selection3' &&
+          navigationRef.current.getCurrentRoute().name !== 'Selection4' &&
+          navigationRef.current.getCurrentRoute().name !== 'Selection5' &&
+          navigationRef.current.getCurrentRoute().name !== 'Selection6' &&
+          navigationRef.current.getCurrentRoute().name !== 'Selection7'
+        ) {
+          return true;
+        }
+      }
+    );
+
+    return () => {
+      backHandler.remove();
+    };
+  }, []);
+
+
   const Stack = createStackNavigator();
+  const navigationRef = useRef(null);
+  console.log(navigationRef)
   return (
-    <NavigationContainer >
-      <Stack.Navigator initialRouteName={'Level7_2'} >
+    <NavigationContainer ref={navigationRef}>
+      <Stack.Navigator initialRouteName={'LevelScreen'} >
         <Stack.Screen
           name="LevelScreen"
           component={LevelScreen}
@@ -90,14 +125,16 @@ export default Navigation = () => {
           name="Level1_1"
           component={Level1_1}
           options={{
-            headerShown: false
+            headerShown: false,
+            headerLeft: () => null,
           }}
         />
         <Stack.Screen
           name="Level1_2"
           component={Level1_2}
           options={{
-            headerShown: false
+            headerShown: false,
+            headerLeft: () => null,
           }}
         />
         <Stack.Screen
@@ -534,8 +571,54 @@ export default Navigation = () => {
             headerShown: false
           }}
         />
+        <Stack.Screen
+          name="Level8_5"
+          component={Level8_5}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level8_5_1"
+          component={Level8_5_1}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level8_7"
+          component={Level8_7}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level8_8"
+          component={Level8_8}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level8_2"
+          component={Level8_2}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="Level8_1"
+          component={Level8_1}
+          options={{
+            headerShown: false
+          }}
+        />
       </Stack.Navigator>
 
     </NavigationContainer>
   );
 };
+// Level8_5
+// Level8_5_1
+// Level8_8
+// Level8_1

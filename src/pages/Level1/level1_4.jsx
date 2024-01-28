@@ -23,17 +23,43 @@ export const Level1_4 = ({ navigation }) => {
                 return
             }
         });
+    const sound = new Sound('game141.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+    const sound2 = new Sound('game142.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
 
     useEffect(() => {
         setTimeout(function () {
+            setTimeout(() => {
+                sound.stop()
+                sound2.play()
+            }, 100);
             setGame(false)
-        }, 3000);
+        }, 4000);
     }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            sound.play()
+        }, 100);
+    }, [])
+
     const [game, setGame] = useState(true)
     const [bucket, setBucket] = useState([
-        { icone: <Image source={require('../../assets/img/level1/game4/greenbuket.png')} style={{ width: 52, height: 65 }} />, id: 1 },
-        { icone: <Image source={require('../../assets/img/level1/game4/pinkbuket.png')} style={{ width: 52, height: 65 }} />, id: 3 },
-        { icone: <Image source={require('../../assets/img/level1/game4/orangebuket.png')} style={{ width: 52, height: 65 }} />, id: 2 },
+        { icone: <Image source={require('../../assets/img/level1/game4/greenbuket.png')} style={{ width: 100, height: 125 }} />, id: 1 },
+        { icone: <Image source={require('../../assets/img/level1/game4/pinkbuket.png')} style={{ width: 100, height: 125 }} />, id: 3 },
+        { icone: <Image source={require('../../assets/img/level1/game4/orangebuket.png')} style={{ width: 100, height: 125 }} />, id: 2 },
     ])
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
@@ -63,6 +89,7 @@ export const Level1_4 = ({ navigation }) => {
             setTimeout(() => {
                 musicSuccess.stop()
                 navigation.navigate('Level1_5')
+                sound.stop()
             }, 2000);
         }
         else {
@@ -78,7 +105,7 @@ export const Level1_4 = ({ navigation }) => {
         return <LevelWrapper img2={require('../../assets/img/bg4.png')} img={require('../../assets/img/4bg.png')}>
             <View style={styles.block}>
                 {bucket.map((elm, i) => {
-                    return <ImgButton onPress={() => Play(elm.id)} key={i} svg={elm.icone} border={'rgba(255, 111, 23, 0.50)'} />
+                    return <ImgButton width={140} height={140} onPress={() => Play(elm.id)} key={i} svg={elm.icone} border={'rgba(255, 111, 23, 0.50)'} />
                 })}
             </View>
         </LevelWrapper>

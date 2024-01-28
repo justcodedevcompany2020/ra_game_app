@@ -17,13 +17,20 @@ export const Level6_1 = ({ navigation }) => {
         ]
     ]
 
+    const appleicon = [
+        <Image source={require('../../assets/img/level6/game1/saucer.png')} style={{ width: 80, height: 50 }} />,
+        <Image source={require('../../assets/img/level6/game1/apple1.png')} style={{ width: 80, height: 50 }} />,
+
+
+    ]
+
     const [disable, setDisable] = useState(false)
     const position = [
-        { x: 254, y: 14 },
-        { x: 26, y: 249 },
-        { x: 84, y: 242 },
-        { x: 232, y: 228 },
-        { x: 368, y: 187 },
+        { x: 274, y: 14 },
+        { x: 26, y: 229 },
+        { x: 84, y: 222 },
+        { x: 232, y: 218 },
+        { x: 338, y: 187 },
         { x: 458, y: 96 },
         { x: 578, y: 66 },
         { x: 356, y: 53 },
@@ -54,6 +61,20 @@ export const Level6_1 = ({ navigation }) => {
                 return
             }
         });
+
+    const sound = new Sound('game61.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+    useEffect(() => {
+        setTimeout(() => {
+            sound.play()
+        }, 100);
+    }, [])
     const [completid, setCompletid] = useState([
         [],
         []
@@ -83,6 +104,7 @@ export const Level6_1 = ({ navigation }) => {
             setTimeout(() => {
                 setDisable(false)
                 musicSuccess.stop()
+                sound.stop()
                 navigation.navigate('Level6_2')
             }, 2000);
         }
@@ -108,6 +130,7 @@ export const Level6_1 = ({ navigation }) => {
     }, [completid])
 
 
+    console.log(completid, 'completid')
 
     return <LevelWrapper img2={require('../../assets/img/bg4.png')} img={require('../../assets/img/4bg.png')} jC='center'>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: '100%' }}>
@@ -127,7 +150,12 @@ export const Level6_1 = ({ navigation }) => {
                     },
                 ]}>
                     <View style={[selectedGlass == 1 && { borderWidth: 1, borderColor: "green" }]}>
-                        <Image source={require('../../assets/img/level6/game1/saucer.png')} style={{ width: 80, height: 50 }} />
+                        {completid[0].length === 0 && <Image source={require('../../assets/img/level6/game1/saucer.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[0].length === 1 && <Image source={require('../../assets/img/level6/game1/apple1.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[0].length === 2 && <Image source={require('../../assets/img/level6/game1/apple2.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[0].length === 3 && <Image source={require('../../assets/img/level6/game1/apple3.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[0].length === 4 && <Image source={require('../../assets/img/level6/game1/apple4.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[0].length === 5 && <Image source={require('../../assets/img/level6/game1/apple5.png')} style={{ width: 80, height: 50 }} />}
                     </View>
                 </TouchableOpacity>
             </View>
@@ -141,7 +169,12 @@ export const Level6_1 = ({ navigation }) => {
                 </View>
                 <TouchableOpacity onPress={() => SelectGlass(2)} style={[{ left: -40, position: 'absolute', justifyContent: 'center', alignItems: 'center', height: 120 },]}>
                     <View style={[selectedGlass == 2 && { borderWidth: 1, borderColor: "green" }]}>
-                        <Image source={require('../../assets/img/level6/game1/saucer.png')} style={{ width: 80, height: 50 }} />
+                        {completid[1].length === 0 && <Image source={require('../../assets/img/level6/game1/saucer.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[1].length === 1 && <Image source={require('../../assets/img/level6/game1/apple1.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[1].length === 2 && <Image source={require('../../assets/img/level6/game1/apple2.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[1].length === 3 && <Image source={require('../../assets/img/level6/game1/apple3.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[1].length === 4 && <Image source={require('../../assets/img/level6/game1/apple4.png')} style={{ width: 80, height: 50 }} />}
+                        {completid[1].length === 5 && <Image source={require('../../assets/img/level6/game1/apple5.png')} style={{ width: 80, height: 50 }} />}
                     </View>
                 </TouchableOpacity>
             </View>

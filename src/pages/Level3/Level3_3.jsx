@@ -2,39 +2,23 @@ import { Image, View } from 'react-native'
 import { ImgButton } from '../../components/ImgButton'
 import { LevelWrapper } from '../../components/LevelWrapper'
 import { useEffect, useState } from 'react'
-import { GetRandomItemsFromArray } from '../../components/Funtion/getRandomItemsFromArray'
 import Sound from 'react-native-sound'
 
 export const Level3_3 = ({ navigation }) => {
-    const number = [
-        { icon: <Image source={require('../../assets/img/0.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: <Image source={require('../../assets/img/1num.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: <Image source={require('../../assets/img/num2.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: <Image source={require('../../assets/img/3.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: <Image source={require('../../assets/img/4.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: <Image source={require('../../assets/img/5.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: <Image source={require('../../assets/img/6.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: <Image source={require('../../assets/img/7.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: <Image source={require('../../assets/img/8.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-        { icon: < Image source={require('../../assets/img/9.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
-    ]
-    const [lengthh, setLength] = useState()
+
     const subjects = [
-        { icon: <Image source={require('../../assets/img/star.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/star.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/star.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/star.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/star.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/heart.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/heart.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/heart.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/heart.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/heart.png')} style={{ width: 50, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/0.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
         { icon: <Image source={require('../../assets/img/rhombus.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/rhombus.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/rhombus.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/rhombus.png')} style={{ width: 50, height: 50 }} />, id: 3 },
-        { icon: <Image source={require('../../assets/img/rhombus.png')} style={{ width: 50, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/9i.png')} style={{ width: 35, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/2i.png')} style={{ width: 35, height: 50 }} />, id: 3, active: false },
+        { icon: <Image source={require('../../assets/img/heart.png')} style={{ width: 35, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/8i.png')} style={{ width: 35, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/0.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
+        { icon: <Image source={require('../../assets/img/8i.png')} style={{ width: 35, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/6i.png')} style={{ width: 35, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/3.png')} style={{ width: 35, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/8i.png')} style={{ width: 35, height: 50 }} />, id: 3 },
+        { icon: <Image source={require('../../assets/img/0.png')} style={{ width: 35, height: 50 }} />, id: 2, active: false },
     ]
 
     const [disable, setDisable] = useState(false)
@@ -53,16 +37,23 @@ export const Level3_3 = ({ navigation }) => {
                 return
             }
         });
+    const sound = new Sound('game33.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+    useEffect(() => {
+        setTimeout(() => {
+            sound.play()
+        }, 100);
+    }, [])
 
     const [activeGame, setActiveGame] = useState([])
     useEffect(() => {
-        const randomNum = Math.floor(Math.random() * 4) + 3
-        let arr = GetRandomItemsFromArray(number, randomNum)
-        setLength(arr.length)
-        let arr1 = GetRandomItemsFromArray(subjects, 8 - arr.length)
-        let combainArray = arr.concat(arr1)
-        let newArr = GetRandomItemsFromArray(combainArray, combainArray.length)
-        setActiveGame(newArr)
+        setActiveGame(subjects)
     }, [])
 
 
@@ -73,12 +64,13 @@ export const Level3_3 = ({ navigation }) => {
                 count = count + 1
             }
         })
-        if (count == lengthh) {
+        if (count == 3) {
             setTimeout(() => {
                 setDisable(true)
                 musicSuccess.play();
             }, 100);
             setTimeout(() => {
+                sound.stop()
                 navigation.navigate('Level3_4')
                 musicSuccess.stop()
             }, 2000);
@@ -112,9 +104,16 @@ export const Level3_3 = ({ navigation }) => {
                 }
             })}
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingHorizontal: 120, marginTop: 30 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingHorizontal: 120, marginTop: 10 }}>
             {activeGame.map((elm, i) => {
-                if (i >= 4) {
+                if (i >= 4 && i < 8) {
+                    return <ImgButton disable={disable} border={elm.active ? 'green' : 'rgba(255, 111, 23, 0.5)'} onPress={() => Game(elm, i)} key={i} svg={elm.icon} />
+                }
+            })}
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingHorizontal: 120, marginTop: 10 }}>
+            {activeGame.map((elm, i) => {
+                if (i >= 8) {
                     return <ImgButton disable={disable} border={elm.active ? 'green' : 'rgba(255, 111, 23, 0.5)'} onPress={() => Game(elm, i)} key={i} svg={elm.icon} />
                 }
             })}

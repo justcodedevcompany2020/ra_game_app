@@ -3,7 +3,6 @@ import { LevelWrapper } from '../../components/LevelWrapper'
 import { NumberButton } from '../../components/NumberBuuton'
 import { Dimensions, Image, StyleSheet, View } from 'react-native'
 import { Input } from '../../components/Input'
-import { GetRandomItemsFromArray } from '../../components/Funtion/getRandomItemsFromArray'
 import Sound from 'react-native-sound'
 
 
@@ -34,42 +33,83 @@ export const Level7_2 = ({ navigation }) => {
                 return
             }
         });
+    const sound = new Sound('game72.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+    useEffect(() => {
+        setTimeout(() => {
+            sound.play()
+        }, 100);
+    }, [])
 
     const [arr, setArr] = useState([
         {
             array: [
                 { icon: <Image source={require('../../assets/img/level7/game2/composition1.png')} style={{ width: 70, height: 70 }} />, id: 1 },
                 { icon: <Image source={require('../../assets/img/level7/game2/composition1.png')} style={{ width: 70, height: 70 }} />, id: 1 },
-
-                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
-                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
-                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
-
-                { icon: <Image source={require('../../assets/img/level7/game2/composition3.png')} style={{ width: 70, height: 70 }} />, id: 3 },
-                { icon: <Image source={require('../../assets/img/level7/game2/composition3.png')} style={{ width: 70, height: 70 }} />, id: 3 },
-                { icon: <Image source={require('../../assets/img/level7/game2/composition3.png')} style={{ width: 70, height: 70 }} />, id: 3 },
-                { icon: <Image source={require('../../assets/img/level7/game2/composition3.png')} style={{ width: 70, height: 70 }} />, id: 3 },
-
-
+                { icon: <Image source={require('../../assets/img/level7/game2/composition1.png')} style={{ width: 70, height: 70 }} />, id: 1 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition1.png')} style={{ width: 70, height: 70 }} />, id: 1 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition1.png')} style={{ width: 70, height: 70 }} />, id: 1 },
             ],
+            ansewer: [
+                { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/circleyellow.png')} />, id: 5 },
+                { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/triangleblue.png')} />, id: 5 },
+                { icon: <Image style={{ width: 50, height: 30 }} source={require('../../assets/img/level7/game2/ovallilac.png')} />, id: 0 },
+            ]
         },
+        {
+            array: [
+                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition2.png')} style={{ width: 100, height: 60 }} />, id: 2 },
+            ],
+            ansewer: [
+                { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/circleyellow.png')} />, id: 7 },
+                { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/triangleblue.png')} />, id: 0 },
+                { icon: <Image style={{ width: 50, height: 30 }} source={require('../../assets/img/level7/game2/ovallilac.png')} />, id: 7 },
+            ]
+        },
+        {
+            array: [
+                { icon: <Image source={require('../../assets/img/level7/game2/composition3.png')} style={{ width: 70, height: 70 }} />, id: 3 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition3.png')} style={{ width: 70, height: 70 }} />, id: 3 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition3.png')} style={{ width: 70, height: 70 }} />, id: 3 },
+                { icon: <Image source={require('../../assets/img/level7/game2/composition3.png')} style={{ width: 70, height: 70 }} />, id: 3 },
+            ],
+            ansewer: [
+                { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/squarepink.png')} />, id: 4 },
+                { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/triangleblue.png')} />, id: 4 },
+                { icon: <Image style={{ width: 50, height: 30 }} source={require('../../assets/img/level7/game2/ovallilac.png')} />, id: 0 },
+            ]
+        }
     ])
 
 
     const [ansewer, setAnswer] = useState([
-        { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/circleyellow.png')} />, id: 2 },
-        { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/triangleblue.png')} />, id: 6 },
-        { icon: <Image style={{ width: 50, height: 30 }} source={require('../../assets/img/level7/game2/ovallilac.png')} />, id: 3 },
+        { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/circleyellow.png')} />, id: 5 },
+        { icon: <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/level7/game2/triangleblue.png')} />, id: 5 },
+        { icon: <Image style={{ width: 50, height: 30 }} source={require('../../assets/img/level7/game2/ovallilac.png')} />, id: 0 },
     ])
 
+    const [game1, setGame1] = useState(0)
+
     const [position, setPosition] = useState([
-        { x: 0, y: 3 },
-        { x: 20, y: 90 },
-        { x: 0, y: 176 },
-        { x: 190, y: 144 },
-        { x: 178, y: 0 },
-        { x: w - 130, y: 5 },
-        { x: w - 100, y: 176 },
+        { x: 0, y: 0 },
+        { x: 90, y: 50 },
+        { x: w, y: 106 },
+        { x: 0, y: 144 },
+        { x: 250, y: 0 },
+        { x: w - 10, y: 50 },
+        { x: w - 200, y: 156 },
         { x: w, y: 59 },
         { x: w, y: 129 },
     ])
@@ -80,10 +120,9 @@ export const Level7_2 = ({ navigation }) => {
     })
 
     useEffect(() => {
-        let item = GetRandomItemsFromArray(position, 9)
-        setPosition(item)
-        setActiveArr(arr[0])
-    }, [])
+        setActiveArr(arr[game1])
+        setAnswer(arr[game1].ansewer)
+    }, [game1])
 
     const Answer = (e) => {
         if (value1 == '') {
@@ -121,7 +160,7 @@ export const Level7_2 = ({ navigation }) => {
                     setValue3('')
                 }, 1000);
             }
-            else if (activeArr.answer.length == 3) {
+            else if (activeArr.ansewer?.length == 3) {
                 setTimeout(() => {
                     setDisable(true)
                     musicSuccess.play();
@@ -129,28 +168,18 @@ export const Level7_2 = ({ navigation }) => {
                 setTimeout(() => {
                     setDisable(false)
                     musicSuccess.stop()
-                    navigation.navigate('Level7_3')
-                }, 2000);
-            }
-        }
-        else if (activeArr.answer.length > 3 && value4 == '') {
-            setValue4(e)
-            if (e != activeArr?.answer[3].count) {
-                setTimeout(() => {
-                    music.play();
-                }, 100);
-                setTimeout(() => {
-                    music.stop()
-                    setValue4('')
-                }, 1000);
-            }
-            else if (activeArr.answer.length == 4) {
-                setTimeout(() => {
-                    musicSuccess.play();
-                }, 100);
-                setTimeout(() => {
-                    navigation.navigate('Level7_3')
-                    musicSuccess.stop()
+                    setValue1('')
+                    setValue2('')
+                    setValue3('')
+
+
+                    if (game1 < 2) {
+                        setGame1(game1 + 1)
+                    }
+                    else {
+                        sound.stop()
+                        navigation.navigate('Level7_3')
+                    }
                 }, 2000);
             }
         }
@@ -163,7 +192,6 @@ export const Level7_2 = ({ navigation }) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', height: '83%' }}>
                 <View>
                     {activeArr?.array?.length > 0 && activeArr.array.map((elm, i) => {
-                        console.log(position.length, activeArr?.array?.length)
                         return <View key={i} style={{ position: 'absolute', left: position[i].x, top: position[i].y }}>
                             {elm.icon}
                         </View>

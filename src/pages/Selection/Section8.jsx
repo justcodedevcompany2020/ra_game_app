@@ -1,10 +1,10 @@
 import { Image, ImageBackground, StyleSheet, TouchableOpacity, View } from "react-native"
 
-export const Selection3 = ({ navigation }) => {
+export const Selection8 = ({ navigation }) => {
     return <View >
         <ImageBackground source={require('../../assets/img/2.png')} resizeMode="cover" style={styles.image}>
             <View style={{ transform: [{ rotate: '90deg' }], marginTop: -100, }}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => navigation.navigate('Level8_4')}>
                     <Image style={styles.img} source={require('../../assets/img/4_1.png')} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Level8_3')}>

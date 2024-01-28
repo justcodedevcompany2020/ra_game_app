@@ -25,11 +25,35 @@ export const Level7_7 = ({ navigation }) => {
             }
         });
 
+    const sound = new Sound('game771.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+    const sound2 = new Sound('game772.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+    const sound3 = new Sound('game773.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+
     const [position, setPosition] = useState(() => [
         { x: 48, y: 15 },
         { x: 292, y: 43 },
-        { x: 505, y: h - 100 },
-        { x: 434, y: 75 },
+        { x: w - 150, y: h - 150 },
+        { x: 434, y: 5 },
         { x: 44, y: 152 },
         { x: 304, y: h - 120 },
 
@@ -39,7 +63,7 @@ export const Level7_7 = ({ navigation }) => {
         [
             { icon: <Image source={require('../../assets/img/level7/game7/pillow.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: true },
             { icon: <Image source={require('../../assets/img/level7/game7/blanket.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: true },
-            { icon: <Image source={require('../../assets/img/level7/game7/chair.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: false },
+            { icon: <Image source={require('../../assets/img/level7/game7/chair.png')} style={{ width: 100, height: 150 }} />, active: false, secleted: false },
             { icon: <Image source={require('../../assets/img/level7/game7/beanbag.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: false },
             { icon: <Image source={require('../../assets/img/level7/game7/iron.png')} style={{ width: 140, height: 100 }} />, active: false, secleted: false },
         ],
@@ -47,9 +71,9 @@ export const Level7_7 = ({ navigation }) => {
             { icon: <Image source={require('../../assets/img/level7/game7/saucer.png')} style={{ width: 150, height: 100 }} />, active: false, secleted: true },
             { icon: <Image source={require('../../assets/img/level7/game7/spoon.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: true },
             { icon: <Image source={require('../../assets/img/level7/game7/cup.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: true },
-            { icon: <Image source={require('../../assets/img/level7/game7/vase.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: false },
+            { icon: <Image source={require('../../assets/img/level7/game7/vase.png')} style={{ width: 100, height: 150 }} />, active: false, secleted: false },
             { icon: <Image source={require('../../assets/img/level7/game7/hanger.png')} style={{ width: 150, height: 100 }} />, active: false, secleted: false },
-            { icon: <Image source={require('../../assets/img/level7/game7/bucket.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: false },
+            { icon: <Image source={require('../../assets/img/level7/game7/bucket.png')} style={{ width: 100, height: 120 }} />, active: false, secleted: false },
         ],
         [
             { icon: <Image source={require('../../assets/img/level7/game7/tassel.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: true },
@@ -57,7 +81,7 @@ export const Level7_7 = ({ navigation }) => {
             { icon: <Image source={require('../../assets/img/level7/game7/pencil.png')} style={{ width: 100, height: 100 }} />, active: false, secleted: true },
             { icon: <Image source={require('../../assets/img/level7/game7/racket.png')} style={{ width: 100, height: 120 }} />, active: false, secleted: false },
             { icon: <Image source={require('../../assets/img/level7/game7/Toothbrush.png')} style={{ width: 100, height: 130 }} />, active: false, secleted: false },
-            { icon: <Image source={require('../../assets/img/level7/game7/hammer.png')} style={{ width: 150, height: 100 }} />, active: false, secleted: false },
+            { icon: <Image source={require('../../assets/img/level7/game7/hammer.png')} style={{ width: 120, height: 80 }} />, active: false, secleted: false },
         ]
     ])
 
@@ -67,7 +91,39 @@ export const Level7_7 = ({ navigation }) => {
 
     useEffect(() => {
         setGame(arr[game1])
+
+
+        setTimeout(() => {
+            sound.stop();
+            sound2.stop();
+            sound3.stop();
+
+        }, 100);
+
+        // if (game1 == 0) {
+        //     setTimeout(() => {
+        //         sound3.play();
+        //     }, 100);
+        // }
+        // else if (game1 == 1) {
+        //     setTimeout(() => {
+        //         sound2.play();
+        //     }, 100);
+        // }
+        // else if (game1 == 2) {
+        //     setTimeout(() => {
+        //         sound3.play();
+        //     }, 100);
+        // }
     }, [game])
+
+    useEffect(() => {
+        if (game1 == 0) {
+            setTimeout(() => {
+                sound3.play();
+            }, 100);
+        }
+    }, [])
 
     const Game = (i) => {
         let item = [...game]
@@ -97,6 +153,16 @@ export const Level7_7 = ({ navigation }) => {
                 }
             })
             if (win) {
+                if (game1 == 0) {
+                    setTimeout(() => {
+                        sound.play();
+                    }, 100);
+                }
+                else if (game1 == 1) {
+                    setTimeout(() => {
+                        sound2.play();
+                    }, 100);
+                }
                 setGame1(game1 + 1)
             }
         }

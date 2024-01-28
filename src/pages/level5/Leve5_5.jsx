@@ -20,6 +20,7 @@ export const Level5_5 = ({ navigation }) => {
             }
         });
 
+
     const [game1, setGame1] = useState(0)
     const lollipop = [
         { icone: <Image style={{ width: 60, height: 45 }} source={require('../../assets/img/level5/game5/snail4.png')} />, id: 5, active: false },
@@ -80,6 +81,7 @@ export const Level5_5 = ({ navigation }) => {
                     music.play();
                 }, 100);
                 setTimeout(() => {
+
                     music.stop()
                 }, 2000);
             }
@@ -101,9 +103,21 @@ export const Level5_5 = ({ navigation }) => {
             }, 100);
             setTimeout(() => {
                 setGame1(game1 + 1)
-                if (game1 == 0) {
-                    navigation.navigate('Level5_6')
-                }
+                setAnswer([
+                    { icone: '', id: '' },
+                    { icone: '', id: '' },
+                    { icone: '', id: '' },
+                    { icone: '', id: '' },
+                    { icone: '', id: '' },
+                    { icone: '', id: '' },
+                    { icone: '', id: '' },
+                    { icone: '', id: '' },
+                    { icone: '', id: '' },
+                ])
+                // if (game1 == 0) {
+                //     musicSuccess.stop()
+                //     navigation.navigate('Level5_5_1')
+                // }
                 musicSuccess.stop()
             }, 2000);
         }
@@ -111,7 +125,8 @@ export const Level5_5 = ({ navigation }) => {
 
     useEffect(() => {
         if (game1 == 1) {
-            setArr(lollipop)
+            navigation.navigate('Level5_5_1')
+            // setArr(lollipop)
         }
     }, [game1])
 

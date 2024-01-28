@@ -1,18 +1,16 @@
-import { Dimensions, Image, StyleSheet, Touchable, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { LevelWrapper } from '../../components/LevelWrapper'
 import { ImgButton } from '../../components/ImgButton';
-import { Air, Bucket, Butterfly1, CarSvg, Green, Red, Train, WhiteAir, WhiteCar, WhiteTrain, Yellow } from '../../assets/svg';
+import { Green, Red, Yellow } from '../../assets/svg';
 import { useEffect, useState } from 'react';
 import Sound from 'react-native-sound';
 
-
-const windowWidth = Dimensions.get('window').width;
 export const Level1_5 = ({ navigation }) => {
     const [arr, setArr] = useState([
         [
-            { icone: <Image source={require('../../assets/img/level1/game4/whiteTrain.png')} style={{ width: 60, height: 40 }} />, id: 1, active: false },
-            { icone: <Image source={require('../../assets/img/level1/game4/planeWhite.png')} style={{ width: 60, height: 40 }} />, id: 2, active: false },
-            { icone: <Image source={require('../../assets/img/level1/game4/whiteCar.png')} style={{ width: 60, height: 40 }} />, id: 3, active: false },
+            { icone: <Image source={require('../../assets/img/level1/game4/whiteTrain.png')} style={{ width: 110, height: 90 }} />, id: 1, active: false },
+            { icone: <Image source={require('../../assets/img/level1/game4/planeWhite.png')} style={{ width: 110, height: 80 }} />, id: 2, active: false },
+            { icone: <Image source={require('../../assets/img/level1/game4/whiteCar.png')} style={{ width: 110, height: 80 }} />, id: 3, active: false },
         ],
         [
             { icone: <Red />, id: 4, active: false },
@@ -26,7 +24,11 @@ export const Level1_5 = ({ navigation }) => {
     useEffect(() => {
         setTimeout(function () {
             setGame(false)
-        }, 3000);
+            setTimeout(() => {
+                sound.stop()
+                sound2.play()
+            }, 100);
+        }, 4000);
     }, [])
     const musicSuccess = new Sound('success.mp3', Sound.MAIN_BUNDLE,
         (error) => {
@@ -42,10 +44,32 @@ export const Level1_5 = ({ navigation }) => {
                 return
             }
         });
+    const sound = new Sound('game143.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+    const sound2 = new Sound('game144.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+
+    useEffect(() => {
+        setTimeout(() => {
+            sound.play()
+        }, 100);
+    }, [])
+
+
     const Game = (number) => {
         let item = [...arr]
         let item2 = { ...activeNumber }
-        // let temp = [...active]
         for (let i = 0; i < item.length; i++) {
             if (number <= 3) {
                 item2.number1 = number
@@ -130,6 +154,7 @@ export const Level1_5 = ({ navigation }) => {
             setTimeout(() => {
                 musicSuccess.stop()
                 navigation.navigate('Level1_6')
+                sound.stop()
             }, 2000);
         }
     }, [arr])
@@ -137,9 +162,9 @@ export const Level1_5 = ({ navigation }) => {
     if (game) {
         return <LevelWrapper img2={require('../../assets/img/bg4.png')} img={require('../../assets/img/4bg.png')} jC='center'>
             <View style={styles.block}>
-                <ImgButton svg={<Image style={{ width: 60, height: 42 }} source={require('../../assets/img/level1/game4/redTrain.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
-                <ImgButton svg={<Image style={{ width: 60, height: 42 }} source={require('../../assets/img/level1/game4/yellowPlane.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
-                <ImgButton svg={<Image style={{ width: 60, height: 42 }} source={require('../../assets/img/level1/game4/greenCar.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton width={140} height={140} svg={<Image style={{ width: 110, height: 100 }} source={require('../../assets/img/level1/game4/redTrain.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton width={140} height={140} svg={<Image style={{ width: 110, height: 80 }} source={require('../../assets/img/level1/game4/yellowPlane.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton width={140} height={140} svg={<Image style={{ width: 110, height: 80 }} source={require('../../assets/img/level1/game4/greenCar.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
             </View>
         </LevelWrapper>
     }
@@ -148,7 +173,7 @@ export const Level1_5 = ({ navigation }) => {
             {
                 arr.length > 0 && arr[0].map((elm, i) => {
                     if (!elm.active) {
-                        return <ImgButton onPress={() => Game(elm.id)} key={i} svg={elm.icone} border={activeNumber.number1 == elm.id ? 'green' : 'rgba(255, 111, 23, 0.50)'} />
+                        return <ImgButton width={140} height={140} onPress={() => Game(elm.id)} key={i} svg={elm.icone} border={activeNumber.number1 == elm.id ? 'green' : 'rgba(255, 111, 23, 0.50)'} />
                     }
                     else {
                         return <View key={i} style={{ width: 90, height: 90 }}></View>
@@ -173,7 +198,7 @@ export const Level1_5 = ({ navigation }) => {
 const styles = StyleSheet.create({
     block: {
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         flexDirection: 'row',
         paddingHorizontal: 100,
         marginTop: 30,

@@ -53,6 +53,19 @@ export const Level2_1 = ({ navigation }) => {
                 return
             }
         });
+    const sound = new Sound('game21.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+    useEffect(() => {
+        setTimeout(() => {
+            sound.play()
+        }, 100);
+    }, [])
     const [completid, setCompletid] = useState([])
     const [selectedGlass, setSelectedGlass] = useState([])
     const [selectedPencil, setSelectedPencil] = useState([])
@@ -161,20 +174,15 @@ export const Level2_1 = ({ navigation }) => {
                 musicSuccess.play();
             }, 100);
             setTimeout(() => {
+                sound.stop()
                 navigation.navigate('Level2_2')
                 musicSuccess.stop()
             }, 2000);
         }
     }, [completid])
 
-    const handleLayout = (event) => {
-        const { x, y, width, height } = event.nativeEvent.layout;
-        //x 70-210
-        //y 19,89
-    }
-
     return <LevelWrapper img2={require('../../assets/img/bg4.png')} img={require('../../assets/img/4bg.png')} jC='center'>
-        {!completid.includes(selectedGlass[0]?.type) && <TouchableOpacity onLayout={(event) => handleLayout(event)} onPress={() => SelectGlass(0)} style={[styles.button, { position: 'absolute', left: 70, top: 19 }, selectedGlass[0]?.id == activeGlass?.id && { borderColor: 'green' }]}>
+        {!completid.includes(selectedGlass[0]?.type) && <TouchableOpacity onPress={() => SelectGlass(0)} style={[styles.button, { position: 'absolute', left: 70, top: 19 }, selectedGlass[0]?.id == activeGlass?.id && { borderColor: 'green' }]}>
             {selectedGlass[0]?.icon}
         </TouchableOpacity>}
         {!completid.includes(selectedGlass[1]?.type) && <TouchableOpacity onPress={() => SelectGlass(1)} style={[styles.button, { position: 'absolute', right: 100, bottom: 19 }, selectedGlass[1]?.id == activeGlass?.id && { borderColor: 'green' }]}>

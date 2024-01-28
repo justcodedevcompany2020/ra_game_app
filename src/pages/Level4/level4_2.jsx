@@ -1,11 +1,15 @@
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { LevelWrapper } from '../../components/LevelWrapper'
 import { HedgehogSvg, RombSvg, Round, Trapezium, Tringle, VaseBig, VaseSmoll } from '../../assets/svg'
 import { useEffect, useState } from 'react'
-import { GetRandomItemsFromArray } from '../../components/Funtion/getRandomItemsFromArray'
 import Sound from 'react-native-sound'
 
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 export const Level4_2 = ({ navigation }) => {
+    let w = windowWidth - 150
+    let h = windowHeight - 150
     const music = new Sound('ding.mp3', Sound.MAIN_BUNDLE,
         (error) => {
             if (error) {
@@ -20,53 +24,57 @@ export const Level4_2 = ({ navigation }) => {
                 return
             }
         });
+    const sound = new Sound('game42.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+    useEffect(() => {
+        setTimeout(() => {
+            sound.play()
+        }, 100);
+    }, [])
     const subject = [
         { icon: <Round />, id: 1, active: false },
+        // { icon: <Round />, id: 1, active: false },
         { icon: <Round />, id: 1, active: false },
-        { icon: <Round />, id: 1, active: false },
         { icon: <Tringle />, id: 2, active: false },
+        // { icon: <Tringle />, id: 2, active: false },
         { icon: <Tringle />, id: 2, active: false },
-        { icon: <Tringle />, id: 2, active: false },
-        { icon: <HedgehogSvg />, id: 3, active: false },
-        { icon: <HedgehogSvg />, id: 3, active: false },
+        // { icon: <HedgehogSvg />, id: 3, active: false },
+        // { icon: <HedgehogSvg />, id: 3, active: false },
         { icon: <HedgehogSvg />, id: 3, active: false },
         { icon: <Trapezium />, id: 4, active: false },
-        { icon: <Trapezium />, id: 4, active: false },
-        { icon: <Trapezium />, id: 4, active: false }
+        // { icon: <Trapezium />, id: 4, active: false },
+        // { icon: <Trapezium />, id: 4, active: false }
     ]
     const answer = [
         { icon: <RombSvg />, id: 5, active: false },
         { icon: <RombSvg />, id: 5, active: false },
         { icon: <RombSvg />, id: 5, active: false },
         { icon: <RombSvg />, id: 5, active: false },
-        { icon: <RombSvg />, id: 5, active: false },
+        // { icon: <RombSvg />, id: 5, active: false },
     ]
     const [arr, setArr] = useState([])
 
     const [position, setPosition] = useState([
-        { x: 30, y: 80 },
+        { x: 30, y: 0 },
         { x: 175, y: 38 },
-        { x: 256, y: 38 },
-        { x: 231, y: 106 },
-        { x: 358, y: 141 },
-        { x: 411, y: 60 },
-        { x: 424, y: 141 },
-        { x: 427, y: 215 },
-        { x: 486, y: 56 },
-        { x: 5, y: 22 },
-        { x: 589, y: 167 },
-        { x: 241, y: 15 },
-        { x: 300, y: 10 },
+        { x: 390, y: 8 },
+        { x: w - 150, y: h },
+        { x: w, y: h - 90 },
+        { x: w - 200, y: 60 },
+        { x: w - 100, y: 141 },
+        { x: w, y: 215 },
+        { x: w, y: 10 },
+        { x: 85, y: 72 },
     ])
 
     useEffect(() => {
-        const randomNum = Math.floor(Math.random() * 4) + 3
-        let arr1 = GetRandomItemsFromArray(subject, randomNum)
-        const randomNum1 = Math.floor(Math.random() * 3) + 2
-        let arr2 = GetRandomItemsFromArray(answer, randomNum1)
-        let item = GetRandomItemsFromArray(position, position.length)
-        setPosition(item)
-        let combain = arr1.concat(arr2)
+        let combain = subject.concat(answer)
         setArr(combain)
     }, [])
 
@@ -137,6 +145,7 @@ export const Level4_2 = ({ navigation }) => {
                 musicSuccess.play();
             }, 100);
             setTimeout(() => {
+                sound.stop()
                 navigation.navigate('Level4_3')
                 musicSuccess.stop()
             }, 2000);

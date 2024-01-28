@@ -24,21 +24,56 @@ export const Level5_7 = ({ navigation }) => {
                 return
             }
         });
+    const sound = new Sound('game571.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+    const sound1 = new Sound('game572.mp3', Sound.MAIN_BUNDLE,
+        (error) => {
+            if (error) {
+                console.log('Error loading music:', error);
+                return
+            }
+        });
+
+
 
     useEffect(() => {
+        setTimeout(function () {
+            sound1.play()
+        }, 100);
         setTimeout(function () {
             setGame1(1)
         }, 3000);
 
         setTimeout(function () {
+            sound1.stop()
+            sound.play()
             setGame1(2)
         }, 6000);
     }, [])
-    const [game, setGame] = useState(true)
+
+    console.log(game1)
+
+    // useEffect(() => {
+    //     setTimeout(function () {
+    //         sound1.stop()
+    //         sound.stop()
+    //     }, 100);
+    //     setTimeout(function () {
+    //         if (game1 == 1) {
+    //             sound.play()
+    //         }
+    //     }, 100);
+    // }, [game1])
     const [bucket, setBucket] = useState([
-        { icone: <Image style={{ width: 70, height: 50 }} source={require('../../assets/img/level5/game7/machine.png')} />, id: 2 },
-        { icone: <Image style={{ width: 60, height: 70 }} source={require('../../assets/img/level5/game7/scooter.png')} />, id: 3 },
-        { icone: <Image style={{ width: 60, height: 70 }} source={require('../../assets/img/level5/game7/bucket.png')} />, id: 1 },
+        { icone: <Image style={{ width: 80, height: 50 }} source={require('../../assets/img/level5/game7/machine.png')} />, id: 2 },
+        { icone: <Image style={{ width: 70, height: 80 }} source={require('../../assets/img/level5/game7/scooter.png')} />, id: 3 },
+        { icone: <Image style={{ width: 70, height: 80 }} source={require('../../assets/img/level5/game7/bucket.png')} />, id: 1 },
     ])
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
@@ -67,6 +102,7 @@ export const Level5_7 = ({ navigation }) => {
             }, 100);
             setTimeout(() => {
                 musicSuccess.stop()
+                sound.stop()
                 navigation.navigate('Level5_8')
             }, 2000);
         }
@@ -91,15 +127,15 @@ export const Level5_7 = ({ navigation }) => {
     else {
         return <LevelWrapper img2={require('../../assets/img/bg4.png')} img={require('../../assets/img/4bg.png')}>
             {game1 == 0 && <View style={styles.block2}>
-                <ImgButton svg={<Image style={{ width: 60, height: 70 }} source={require('../../assets/img/level5/game7/ball.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
-                <ImgButton svg={<Image style={{ width: 50, height: 70 }} source={require('../../assets/img/level5/game7/cube.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
-                <ImgButton svg={<Image style={{ width: 70, height: 50 }} source={require('../../assets/img/level5/game7/machine.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
-                <ImgButton svg={<Image style={{ width: 50, height: 70 }} source={require('../../assets/img/level5/game7/pyramid.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton svg={<Image style={{ width: 70, height: 80 }} source={require('../../assets/img/level5/game7/ball.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton svg={<Image style={{ width: 60, height: 80 }} source={require('../../assets/img/level5/game7/cube.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton svg={<Image style={{ width: 80, height: 60 }} source={require('../../assets/img/level5/game7/machine.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton svg={<Image style={{ width: 60, height: 80 }} source={require('../../assets/img/level5/game7/pyramid.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
             </View>}
             {game1 == 1 && <View style={styles.block2}>
-                <ImgButton svg={<Image style={{ width: 60, height: 70 }} source={require('../../assets/img/level5/game7/ball.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
-                <ImgButton svg={<Image style={{ width: 50, height: 70 }} source={require('../../assets/img/level5/game7/cube.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
-                <ImgButton svg={<Image style={{ width: 50, height: 70 }} source={require('../../assets/img/level5/game7/pyramid.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton svg={<Image style={{ width: 70, height: 80 }} source={require('../../assets/img/level5/game7/ball.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton svg={<Image style={{ width: 60, height: 80 }} source={require('../../assets/img/level5/game7/cube.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
+                <ImgButton svg={<Image style={{ width: 60, height: 80 }} source={require('../../assets/img/level5/game7/pyramid.png')} />} border={'rgba(255, 111, 23, 0.50)'} />
             </View>}
         </LevelWrapper>
     }

@@ -1,9 +1,8 @@
-import {Image, TouchableOpacity, View, StyleSheet} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {LevelWrapper} from '../../../components/LevelWrapper';
 
+import {useState} from 'react';
 import {NumberButton} from '../../../components/NumberBuuton';
-import {useEffect, useState} from 'react';
-import Sound from 'react-native-sound';
 
 export const LevelFirst1_1 = ({navigation}) => {
   const [disable, setDisable] = useState(false);
@@ -11,7 +10,7 @@ export const LevelFirst1_1 = ({navigation}) => {
   const button = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
   const [el, setEl] = useState([
     {
-      img: require('../../../assets/img/level1First/game1/ketchup.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/ketchup.png'),
       width: 58,
       height: 82,
       bottom: -170,
@@ -19,7 +18,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: true,
     },
     {
-      img: require('../../../assets/img/level1First/game1/automobile.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/automobile.png'),
       width: 90,
       height: 63,
       bottom: -50,
@@ -28,7 +27,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: false,
     },
     {
-      img: require('../../../assets/img/level1First/game1/milk.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/milk.png'),
       width: 85,
       height: 121,
       bottom: -180,
@@ -36,7 +35,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: true,
     },
     {
-      img: require('../../../assets/img/level1First/game1/drosh.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/drosh.png'),
       width: 97,
       height: 120,
       bottom: -90,
@@ -44,7 +43,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: false,
     },
     {
-      img: require('../../../assets/img/level1First/game1/leave.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/leave.png'),
       width: 90,
       height: 126,
       bottom: -200,
@@ -52,7 +51,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: false,
     },
     {
-      img: require('../../../assets/img/level1First/game1/klubok.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/klubok.png'),
       width: 135,
       height: 96,
       bottom: -70,
@@ -60,7 +59,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: false,
     },
     {
-      img: require('../../../assets/img/level1First/game1/potato.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/potato.png'),
       width: 111,
       height: 130,
       bottom: -200,
@@ -68,7 +67,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: true,
     },
     {
-      img: require('../../../assets/img/level1First/game1/cheese.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/cheese.png'),
       width: 114,
       height: 80,
       bottom: -70,
@@ -76,7 +75,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: true,
     },
     {
-      img: require('../../../assets/img/level1First/game1/icecream.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/icecream.png'),
       width: 100,
       height: 142,
       bottom: -200,
@@ -85,7 +84,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       isFood: true,
     },
     {
-      img: require('../../../assets/img/level1First/game1/taxtak.png'),
+      img: require('../../../assets/img/_LEVEL1/level1First/game1/taxtak.png'),
       width: 110,
       height: 78,
       bottom: -70,
@@ -106,8 +105,8 @@ export const LevelFirst1_1 = ({navigation}) => {
   return (
     <LevelWrapper
       paddingTop={20}
-      img={require('../../../assets/img/level1First/game1/bglv1.png')}
-      img2={require('../../../assets/img/level1First/game1/33.png')}>
+      img={require('../../../assets/img/_LEVEL1/level1First/game1/bglv1.png')}
+      img2={require('../../../assets/img/_LEVEL1/level1First/game1/33.png')}>
       <View
         style={{
           position: 'relative',

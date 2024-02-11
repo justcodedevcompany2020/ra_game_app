@@ -8,9 +8,8 @@ import Sound from 'react-native-sound';
 export const LevelFirst1_1 = ({navigation}) => {
   const [disable, setDisable] = useState(false);
 
-  const buuton = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-
-  const el = [
+  const button = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+  const [el, setEl] = useState([
     {
       img: require('../../../assets/img/level1First/game1/ketchup.png'),
       width: 58,
@@ -25,7 +24,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       height: 63,
       bottom: -50,
       left: 30,
-      transform: [{rotateZ: '-0.785398rad'}],
+      transform: true,
       isFood: false,
     },
     {
@@ -82,7 +81,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       height: 142,
       bottom: -200,
       left: 400,
-      transform: [{rotateZ: '-0.785398rad'}],
+      transform: true,
       isFood: true,
     },
     {
@@ -93,14 +92,15 @@ export const LevelFirst1_1 = ({navigation}) => {
       left: 510,
       isFood: false,
     },
-  ];
+  ]);
 
-  const hideElement = (isFood, index) => {
-    console.log(isFood, 'isFood');
-    if (isFood) {
-      el.splice(index, 1);
-    }
-    console.log(el, 'ell');
+  const hideElement = index => {
+    console.log('Index to hide:', index);
+    setEl(prevEl => {
+      const updatedEl = prevEl.filter((_, i) => i !== index); // Remove the element at the given index
+      console.log('Updated elements:', updatedEl);
+      return updatedEl;
+    });
   };
 
   return (
@@ -111,6 +111,9 @@ export const LevelFirst1_1 = ({navigation}) => {
       <View
         style={{
           position: 'relative',
+          // flexDirection: 'row',
+          // alignItems: 'center',
+          // alignItems: 'flex-end',
         }}>
         {el.map((value, index) => {
           return (
@@ -119,11 +122,12 @@ export const LevelFirst1_1 = ({navigation}) => {
                 position: 'absolute',
                 bottom: value.bottom,
                 left: value.left,
-                transform: value.transform,
+                transform: value.transform ? [{rotate: '-45deg'}] : '',
               }}
               onPress={() => {
-                console.log(value.isFood, 'd');
-                // hideElement(value.isFood, index);
+                if (value.isFood) {
+                  hideElement(index);
+                }
               }}
               key={index}>
               <Image
@@ -140,7 +144,7 @@ export const LevelFirst1_1 = ({navigation}) => {
       </View>
 
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        {buuton.map((elm, i) => {
+        {button.map((elm, i) => {
           return (
             <NumberButton
               disabled={disable}

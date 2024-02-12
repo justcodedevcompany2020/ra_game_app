@@ -1,30 +1,26 @@
-import Sound from "react-native-sound";
-import Navigation from "./Navigation"
-import { useEffect, useState } from "react";
-import { AppState } from 'react-native';
+import Sound from 'react-native-sound';
+import Navigation from './Navigation';
+import {useEffect, useState} from 'react';
+import {AppState} from 'react-native';
 
-import { BackHandler } from 'react-native';
+import {BackHandler} from 'react-native';
 export default App = () => {
-
-
-
   const [appState, setAppState] = useState(AppState.currentState);
-  const sound1 = new Sound('a.mp3', Sound.MAIN_BUNDLE, (error) => {
+  const sound1 = new Sound('a.mp3', Sound.MAIN_BUNDLE, error => {
     if (error) {
       console.error('Failed to load sound1', error);
       return;
     }
   });
 
-
-  const sound2 = new Sound('b.mp3', Sound.MAIN_BUNDLE, (error) => {
+  const sound2 = new Sound('b.mp3', Sound.MAIN_BUNDLE, error => {
     if (error) {
       console.error('Failed to load sound2', error);
       return;
     }
-  })
+  });
   useEffect(() => {
-    const handleAppStateChange = (nextAppState) => {
+    const handleAppStateChange = nextAppState => {
       setAppState(nextAppState);
 
       if (nextAppState === 'active') {
@@ -34,7 +30,7 @@ export default App = () => {
 
     const appStateSubscription = AppState.addEventListener(
       'change',
-      handleAppStateChange
+      handleAppStateChange,
     );
 
     startLockCheck();
@@ -49,23 +45,21 @@ export default App = () => {
     // You can use native modules or third-party libraries
     // For simplicity, we're assuming it's always unlocked in this example.
     // setIsLocked(false);
-
   };
 
-  const handleAppStateChange = (nextAppState) => {
+  const handleAppStateChange = nextAppState => {
     if (nextAppState === 'background') {
       sound1.stop(() => {
         sound1.setCurrentTime(0);
-      })
-      sound2.stop()
+      });
+      sound2.stop();
     }
   };
-
 
   useEffect(() => {
     const appStateSubscription = AppState.addEventListener(
       'change',
-      handleAppStateChange
+      handleAppStateChange,
     );
 
     return () => {
@@ -76,14 +70,14 @@ export default App = () => {
     if (appState != 'active') {
       sound1.stop(() => {
         sound1.setCurrentTime(0);
-      })
-      sound2.stop()
+      });
+      sound2.stop();
     }
-  }, [appState])
+  }, [appState]);
 
   useEffect(() => {
     setTimeout(() => {
-      sound1.play((success) => {
+      sound1.play(success => {
         if (success) {
           setTimeout(() => {
             playSound2();
@@ -92,12 +86,12 @@ export default App = () => {
           console.error('Failed to play sound1');
         }
       });
-    }, 100)
+    }, 100);
 
     function playSound2() {
       sound1.stop(() => {
         sound1.setCurrentTime(0);
-        sound2.play((success) => {
+        sound2.play(success => {
           if (success) {
             setTimeout(() => {
               playSound1();
@@ -112,7 +106,7 @@ export default App = () => {
     function playSound1() {
       sound2.stop(() => {
         sound2.setCurrentTime(0);
-        sound1.play((success) => {
+        sound1.play(success => {
           if (success) {
             setTimeout(() => {
               playSound2();
@@ -123,13 +117,10 @@ export default App = () => {
         });
       });
     }
-    ;
-
     return () => {
       sound1.release();
     };
   }, [appState]);
 
-
-  return <Navigation />
-}
+  return <Navigation />;
+};

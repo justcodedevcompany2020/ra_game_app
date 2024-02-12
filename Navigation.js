@@ -1,6 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 // first Level LiLit
+
 import {Selection1First} from './src/pages/firstLevels/Selection';
 import {Selection2First} from './src/pages/firstLevels/Selection/Selection2';
 import {Selection3First} from './src/pages/firstLevels/Selection/Selection3';
@@ -14,6 +15,7 @@ import {Selection10First} from './src/pages/firstLevels/Selection/Section10';
 import {Selection11First} from './src/pages/firstLevels/Selection/Section11';
 import {LevelScreenFirst} from './src/pages/firstLevels/Level';
 import {LevelFirst1_1} from './src/pages/firstLevels/Level1/level1_1';
+import {LevelFirst1_2} from './src/pages/firstLevels/Level1/level1_2';
 
 // Second Level Musho
 import {LevelScreen} from './src/pages/Level';
@@ -197,7 +199,13 @@ export default Navigation = () => {
             headerShown: false,
           }}
         />
-
+        <Stack.Screen
+          name="LevelFirst1_2"
+          component={LevelFirst1_2}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="Selection1First"
           component={Selection1First}

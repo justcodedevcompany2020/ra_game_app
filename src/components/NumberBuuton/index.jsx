@@ -7,13 +7,18 @@ export const NumberButton = ({
   disabled,
   bg = '#FF7575',
   bc = 'rgba(255, 117, 117, 0.40)',
-  height = 55,
+  height,
 }) => {
   return (
     <TouchableOpacity
       style={[
         styles.button,
-        {backgroundColor: bg, borderColor: bc, width: height, height: height},
+        {
+          backgroundColor: bg,
+          borderColor: bc,
+          width: height ? height : 55,
+          height: height ? height : 55,
+        },
       ]}
       disabled={disabled}
       onPress={onPress}>

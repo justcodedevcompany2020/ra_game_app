@@ -16,7 +16,11 @@ import {Selection11First} from './src/pages/firstLevels/Selection/Section11';
 import {LevelScreenFirst} from './src/pages/firstLevels/Level';
 import {LevelFirst1_1} from './src/pages/firstLevels/Level1/level1_1';
 import {LevelFirst1_2} from './src/pages/firstLevels/Level1/level1_2';
-
+import {LevelFirst1_3} from './src/pages/firstLevels/Level1/level1_3';
+import {LevelFirst1_4} from './src/pages/firstLevels/Level1/level1_4';
+import {LevelFirst1_5} from './src/pages/firstLevels/Level1/level1_5';
+import {LevelFirst2_1} from './src/pages/firstLevels/Level2/level2_1';
+import {LevelFirst2_2} from './src/pages/firstLevels/Level2/level2_2';
 // Second Level Musho
 import {LevelScreen} from './src/pages/Level';
 import {Selection} from './src/pages/Selection';
@@ -200,8 +204,43 @@ export default Navigation = () => {
           }}
         />
         <Stack.Screen
+          name="LevelFirst2_1"
+          component={LevelFirst2_1}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="LevelFirst2_2"
+          component={LevelFirst2_2}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="LevelFirst1_5"
+          component={LevelFirst1_5}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="LevelFirst1_4"
+          component={LevelFirst1_4}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
           name="LevelFirst1_2"
           component={LevelFirst1_2}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="LevelFirst1_3"
+          component={LevelFirst1_3}
           options={{
             headerShown: false,
           }}

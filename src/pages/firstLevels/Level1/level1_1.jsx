@@ -1,13 +1,14 @@
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View, Text} from 'react-native';
 import {LevelWrapper} from '../../../components/LevelWrapper';
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {NumberButton} from '../../../components/NumberBuuton';
 
 export const LevelFirst1_1 = ({navigation}) => {
   const [disable, setDisable] = useState(false);
-
+  const [number, setNumber] = useState('');
   const button = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+  const [count, setCount] = useState(0);
   const [el, setEl] = useState([
     {
       img: require('../../../assets/img/_LEVEL1/level1First/game1/ketchup.png'),
@@ -95,12 +96,23 @@ export const LevelFirst1_1 = ({navigation}) => {
 
   const hideElement = index => {
     console.log('Index to hide:', index);
-    setEl(prevEl => {
-      const updatedEl = prevEl.filter((_, i) => i !== index); // Remove the element at the given index
-      console.log('Updated elements:', updatedEl);
-      return updatedEl;
-    });
+    if (count != number) {
+      setEl(prevEl => {
+        const updatedEl = prevEl.filter((_, i) => i !== index);
+        console.log('Updated elements:', updatedEl);
+        setCount(count + 1);
+        return updatedEl;
+      });
+    } else {
+      return false;
+    }
   };
+
+  useEffect(() => {
+    if (count == number) {
+      navigation.navigate('LevelFirst1_2');
+    }
+  }, [count, number]);
 
   return (
     <LevelWrapper
@@ -110,9 +122,6 @@ export const LevelFirst1_1 = ({navigation}) => {
       <View
         style={{
           position: 'relative',
-          // flexDirection: 'row',
-          // alignItems: 'center',
-          // alignItems: 'flex-end',
         }}>
         {el.map((value, index) => {
           return (
@@ -139,7 +148,9 @@ export const LevelFirst1_1 = ({navigation}) => {
             </TouchableOpacity>
           );
         })}
-        <View style={styles.blueTrash}></View>
+        <View style={styles.blueTrash}>
+          <Text style={styles.numberOne}>{number}</Text>
+        </View>
       </View>
 
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
@@ -148,7 +159,13 @@ export const LevelFirst1_1 = ({navigation}) => {
             <NumberButton
               disabled={disable}
               key={i}
-              onPress={() => Answer(elm)}
+              onPress={() => {
+                if (elm == '3' || elm == '4' || elm == '5') {
+                  setNumber(elm);
+                } else {
+                  setNumber('');
+                }
+              }}
               number={elm}
               bc={'#A0CDD466'}
               bg={'#FFFFFF'}
@@ -172,5 +189,17 @@ const styles = StyleSheet.create({
     bottom: -180,
     right: 0,
     borderColor: '#AADEE5',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  numberOne: {
+    color: '#fff',
+    fontFamily: 'Pacifico-Regular',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -18,
+    fontSize: 40,
+    color: '#AADEE5',
   },
 });

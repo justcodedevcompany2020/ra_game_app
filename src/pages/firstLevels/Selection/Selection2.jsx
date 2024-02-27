@@ -26,13 +26,19 @@ export const Selection2First = ({navigation}) => {
               source={require('../../../assets/img/3_1.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('LevelFirst2_2');
+            }}>
             <Image
               style={styles.img}
               source={require('../../../assets/img/2_1.png')}
             />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('LevelFirst2_1');
+            }}>
             <Image
               style={styles.img}
               source={require('../../../assets/img/1_1.png')}

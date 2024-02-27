@@ -1,7 +1,7 @@
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {LevelWrapper} from '../../../components/LevelWrapper';
 
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {NumberButton} from '../../../components/NumberBuuton';
 
 export const LevelFirst1_2 = ({navigation}) => {
@@ -135,14 +135,28 @@ export const LevelFirst1_2 = ({navigation}) => {
     },
   ]);
 
-  const hideElement = index => {
+  const hideElement = (index, oval) => {
     console.log('Index to hide:', index);
-    setEl(prevEl => {
-      const updatedEl = prevEl.filter((_, i) => i !== index);
-      console.log('Updated elements:', updatedEl);
-      return updatedEl;
-    });
+    if (isOvalPic && oval && !isAnother) {
+      setEl(prevEl => {
+        const updatedEl = prevEl.filter((_, i) => i !== index);
+        console.log('Updated elements:', updatedEl);
+        return updatedEl;
+      });
+    } else if (isAnother && !oval && !isOvalPic) {
+      setEl(prevEl => {
+        const updatedEl = prevEl.filter((_, i) => i !== index);
+        console.log('Updated elements:', updatedEl);
+        return updatedEl;
+      });
+    }
   };
+
+  useEffect(() => {
+    if (el.length == 0) {
+      navigation.navigate('LevelFirst1_3');
+    }
+  }, [el]);
 
   return (
     <LevelWrapper
@@ -157,15 +171,9 @@ export const LevelFirst1_2 = ({navigation}) => {
                 position: 'absolute',
                 bottom: value.bottom,
                 left: value.left,
-                // transform: value.transform ? [{rotate: '-45deg'}] : '',
               }}
               onPress={() => {
-                // if (value.isOval && isOvalPic) {
-                //   hideElementPurple(index);
-                // }
-                // if(!value.isOval && isAnother){
-                //     hideElementPink(index)
-                // }
+                hideElement(index, value.isOval);
               }}
               key={index}>
               <Image
@@ -188,11 +196,13 @@ export const LevelFirst1_2 = ({navigation}) => {
         <TouchableOpacity
           onPress={() => {
             setIsOvalPic(true);
+            setIsAnother(false);
           }}
           style={styles.purple}></TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             setIsAnother(true);
+            setIsOvalPic(false);
           }}
           style={styles.pink}></TouchableOpacity>
       </View>
